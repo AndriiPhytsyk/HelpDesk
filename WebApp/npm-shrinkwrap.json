@@ -1,0 +1,143 @@
+{
+  "name": "asp.net",
+  "version": "1.0.0",
+  "lockfileVersion": 1,
+  "requires": true,
+  "dependencies": {
+    "angular2-template-loader": {
+      "version": "0.6.2",
+      "resolved": "https://registry.npmjs.org/angular2-template-loader/-/angular2-template-loader-0.6.2.tgz",
+      "integrity": "sha1-wNROkP/w+sleiyPwQ6zaf9HFHXw=",
+      "dev": true,
+      "requires": {
+        "loader-utils": "0.2.17"
+      }
+    },
+    "aspnet-prerendering": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/aspnet-prerendering/-/aspnet-prerendering-3.0.1.tgz",
+      "integrity": "sha1-C252e0nkJeHT1ZYR+sgMnG9bAQA=",
+      "dev": true,
+      "requires": {
+        "domain-task": "3.0.3"
+      }
+    },
+    "big.js": {
+      "version": "3.1.3",
+      "resolved": "https://registry.npmjs.org/big.js/-/big.js-3.1.3.tgz",
+      "integrity": "sha1-TK2iGTZS6zyp7I5VyQFWacmAaXg=",
+      "dev": true
+    },
+    "domain-context": {
+      "version": "0.5.1",
+      "resolved": "https://registry.npmjs.org/domain-context/-/domain-context-0.5.1.tgz",
+      "integrity": "sha1-MhxmpBBVmHUHsjlqzF8E5T+5l8Q=",
+      "dev": true
+    },
+    "domain-task": {
+      "version": "3.0.3",
+      "resolved": "https://registry.npmjs.org/domain-task/-/domain-task-3.0.3.tgz",
+      "integrity": "sha1-T+fXQ5rP55LWm/jmv6ax41aGLUU=",
+      "dev": true,
+      "requires": {
+        "domain-context": "0.5.1",
+        "is-absolute-url": "2.1.0",
+        "isomorphic-fetch": "2.2.1"
+      }
+    },
+    "emojis-list": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/emojis-list/-/emojis-list-2.1.0.tgz",
+      "integrity": "sha1-TapNnbAPmBmIDHn6RXrlsJof04k=",
+      "dev": true
+    },
+    "encoding": {
+      "version": "0.1.12",
+      "resolved": "https://registry.npmjs.org/encoding/-/encoding-0.1.12.tgz",
+      "integrity": "sha1-U4tm8+5izRq1HsMjgp0flIDHS+s=",
+      "dev": true,
+      "requires": {
+        "iconv-lite": "0.4.18"
+      }
+    },
+    "iconv-lite": {
+      "version": "0.4.18",
+      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.18.tgz",
+      "integrity": "sha1-I9hlaxaq5nQqwpcy6o8DNqR4nPI=",
+      "dev": true
+    },
+    "is-absolute-url": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/is-absolute-url/-/is-absolute-url-2.1.0.tgz",
+      "integrity": "sha1-UFMN+4T8yap9vnhS6Do3uTufKqY=",
+      "dev": true
+    },
+    "is-stream": {
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/is-stream/-/is-stream-1.1.0.tgz",
+      "integrity": "sha1-EtSj3U5o4Lec6428hBc66A2RykQ=",
+      "dev": true
+    },
+    "isomorphic-fetch": {
+      "version": "2.2.1",
+      "resolved": "https://registry.npmjs.org/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz",
+      "integrity": "sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=",
+      "dev": true,
+      "requires": {
+        "node-fetch": "1.7.1",
+        "whatwg-fetch": "2.0.3"
+      }
+    },
+    "json5": {
+      "version": "0.5.1",
+      "resolved": "https://registry.npmjs.org/json5/-/json5-0.5.1.tgz",
+      "integrity": "sha1-Hq3nrMASA0rYTiOWdn6tn6VJWCE=",
+      "dev": true
+    },
+    "loader-utils": {
+      "version": "0.2.17",
+      "resolved": "https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.17.tgz",
+      "integrity": "sha1-+G5jdNQyBabmxg6RlvF8Apm/s0g=",
+      "dev": true,
+      "requires": {
+        "big.js": "3.1.3",
+        "emojis-list": "2.1.0",
+        "json5": "0.5.1",
+        "object-assign": "4.1.1"
+      }
+    },
+    "materialize-css": {
+      "version": "1.0.0-rc.1",
+      "resolved": "https://registry.npmjs.org/materialize-css/-/materialize-css-1.0.0-rc.1.tgz",
+      "integrity": "sha512-YzxLgNrkaE6QKMtrjZG3ogQy64S23u3aXvwGEt5JBoGpI1jni9WIM3U8xhuZUtgUjHuCMdRqrRnA5BtUrV0wrg=="
+    },
+    "node-fetch": {
+      "version": "1.7.1",
+      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-1.7.1.tgz",
+      "integrity": "sha1-iZyz0KPJL5UsR/G4dvTIrqvUANU=",
+      "dev": true,
+      "requires": {
+        "encoding": "0.1.12",
+        "is-stream": "1.1.0"
+      }
+    },
+    "object-assign": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
+      "integrity": "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=",
+      "dev": true
+    },
+    "raw-loader": {
+      "version": "0.5.1",
+      "resolved": "https://registry.npmjs.org/raw-loader/-/raw-loader-0.5.1.tgz",
+      "integrity": "sha1-DD0L6u2KAclm2Xh793goElKpeao=",
+      "dev": true
+    },
+    "whatwg-fetch": {
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz",
+      "integrity": "sha1-nITsLc9oGH/wC8ZOEnS0QhduHIQ=",
+      "dev": true
+    }
+  }
+}
