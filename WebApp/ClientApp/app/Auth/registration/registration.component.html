@@ -21,6 +21,22 @@
                                               *ngIf="form.get('name').invalid && form.get('name').touched">
                                             <span *ngIf="form.get('name')['errors']['required']">Username is required. </span>
                                         </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col s12"
+                                         [ngClass]="{'has-error': form.get('company').invalid && form.get('company').touched}">
+                                        <label for="company" class="active">Company</label>
+                                        <input placeholder="Enter Your Company"
+                                               id="company"
+                                               class="form-control underlined"
+                                               type="text"
+                                               formControlName="company">
+
+                                        <span class="helper-text"
+                                              *ngIf="form.get('company').invalid && form.get('compamy').touched">
+                                            <span *ngIf="form.get('company')['errors']['required']">Company is required. </span>
+                                        </span>
 
                                     </div>
                                 </div>
@@ -46,10 +62,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="card-action">
-                                        <input type="submit" class="btn col s12" [disabled]="form.invalid" value="Sign In">
-                                        <p>
-                                            <a href="#">Register now!</a>
-                                        </p>
+                                        <input type="submit" class="btn col s12" [disabled]="form.invalid" value="Sign Up">
                                     </div>
                                 </div>
                             </form>

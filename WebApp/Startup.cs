@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using System.Text;
 using WebApp.Helpers;
+using System.IO;
 
 namespace WebApp
 {
@@ -68,6 +69,7 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
 
@@ -82,6 +84,12 @@ namespace WebApp
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
+            // обработка маршрутов, которые не сопоставлены с ресурсам ранее
+            app.Run(async (context) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+            });
         }
     }
 }

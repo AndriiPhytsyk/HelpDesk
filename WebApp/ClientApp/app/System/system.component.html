@@ -1,0 +1,146 @@
+<header class="header">
+    <div class="mydropdown">
+        <button class="mydropbtn">Organization <i class="fas fa-caret-down"></i></button>
+        <div class="mydropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Add...</a>
+        </div>
+    </div>
+    <div class="mydropdown">
+        <button class="mydropbtn">Projects <i class="fas fa-caret-down"></i></button>
+        <div class="mydropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a (click)="addNewProjectField()" *ngIf="!newProjectField">Add...</a>
+            <div *ngIf="newProjectField">
+                <form [formGroup]="newProjectForm" (ngSubmit)="addNewProject()">
+                    <div class="col-sm-12">
+                        <input 
+                               class="form-control input-sm"
+                               id="inputsm" 
+                               type="text"
+                               formControlName="title"
+                               >
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="close" aria-label="Close" (click)="removeNewProjectField()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="mydropdown user">
+        <button class="mydropbtn">User <i class="fas fa-caret-down"></i></button>
+        <div class="mydropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Log Out <i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </div>
+</header>
+<div class="row">
+    <div class="col s3">
+        <div class="card grey lighten-4">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Todo<i class="material-icons right">more_vert</i></span>
+                <ul class="collection">
+                    <li class="collection-item"><a class="modal-trigger" href="#modal1">Learn c#</a><a href="#!" class="secondary-content"><i class="material-icons">delete</i></a><a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></li>
+                    <li class="collection-item"><a href="#!">Learn Angular</a><a href="#!" class="secondary-content"><i class="material-icons">delete</i></a><a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></li>
+                </ul>
+                <a class="btn-floating" (click)=addInputFieldTodo() *ngIf="!isInputFieldTodo"><i class="material-icons">add</i></a>
+                <div *ngIf="isInputFieldTodo">
+                    <label></label>
+                    <input type="text" class="validate" />
+                    <div class="row">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                            Add
+                        </button>
+                        <a (click)="removeInputFieldTodo()" class="btn-floating  grey darken-2"><i class="material-icons">clear</i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col s3">
+        <div class="card grey lighten-4">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">In Progress<i class="material-icons right">more_vert</i></span>
+                <ul class="collection">
+                    <li class="collection-item"><a href="#!">Learn c#</a><a href="#!" class="secondary-content"><i class="material-icons">delete</i></a><a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></li>
+                    <li class="collection-item"><a href="#!">Learn Angular</a><a href="#!" class="secondary-content"><i class="material-icons">delete</i></a><a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></li>
+                </ul>
+                <a class="btn-floating" (click)=addInputFieldProgress() *ngIf="!isInputFieldProgress"><i class="material-icons">add</i></a>
+                <div *ngIf="isInputFieldProgress">
+                    <label></label>
+                    <input type="text" class="validate" />
+                    <div class="row">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                            Add
+                        </button>
+                        <a (click)="removeInputFieldProgress()" class="btn-floating  grey darken-2"><i class="material-icons">clear</i></a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col s3">
+        <div class="card grey lighten-4">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Completed<i class="material-icons right">more_vert</i></span>
+                <ul class="collection">
+                    <li class="collection-item"><a href="#!">Learn c#</a><a href="#!" class="secondary-content"><i class="material-icons">delete</i></a><a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></li>
+                    <li class="collection-item"><a href="#!">Learn Angular</a><a href="#!" class="secondary-content"><i class="material-icons">delete</i></a><a href="#!" class="secondary-content"><i class="material-icons">edit</i></a></li>
+                </ul>
+                <a class="btn-floating" (click)=addInputFieldCompleted() *ngIf="!isInputFieldCompleted"><i class="material-icons">add</i></a>
+                <div *ngIf="isInputFieldCompleted">
+                    <label></label>
+                    <input type="text" class="validate" />
+                    <div class="row">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">
+                            Add
+                        </button>
+                        <a (click)="removeInputFieldCompleted()" class="btn-floating  grey darken-2"><i class="material-icons">clear</i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+
+<hr>
+
+<pre>{{closeResult}}</pre>
+
+
+
+
+

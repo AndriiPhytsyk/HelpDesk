@@ -31,9 +31,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\app\Auth\Login\" />
-    <Folder Include="ClientApp\app\Auth\Registration\" />
-    <Folder Include="ClientApp\app\System\" />
+    <None Remove="ClientApp\app\Shared\Models\organization.model.ts" />
+    <None Remove="ClientApp\app\Shared\Models\project.model.ts" />
+    <None Remove="ClientApp\app\System\Project\project.component.ts" />
+    <None Remove="ClientApp\app\System\services\project.service.ts" />
+    <None Remove="ClientApp\app\System\Task\task.component..ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\Shared\services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\Shared\Models\organization.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Shared\Models\project.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\System\Project\project.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\System\services\project.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\System\Task\task.component..ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

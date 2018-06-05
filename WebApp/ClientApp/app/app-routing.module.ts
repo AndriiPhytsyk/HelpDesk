@@ -1,18 +1,24 @@
-﻿//import { NgModule } from '@angular/core';
-//import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+﻿import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-//import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { NotFoundComponent } from './Shared/components/not-found/not-found.component';
+import { SystemComponent } from './System/system.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
+import { AppComponent } from './app.component';
 
-//const routes: Routes = [
-//  {path: '', redirectTo: 'login', pathMatch: 'full'},
-//  {path: 'system', loadChildren: './system/system.module#SystemModule'},
-//  {path: '**', component: NotFoundComponent}
-//];
+const routes: Routes = [
+    {
+        path: '', component: AppComponent, children: [
+            { path: 'log', component: LoginComponent },
+            { path: 'registration', component: RegistrationComponent },
+            { path: 'system', component: SystemComponent }
+        ]
+    }
+];
 
-//@NgModule({
-//  imports: [RouterModule.forRoot(routes, {
-//    preloadingStrategy: PreloadAllModules
-//  })],
-//  exports: [RouterModule]
-//})
-//export class AppRoutingModule {}
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule { }

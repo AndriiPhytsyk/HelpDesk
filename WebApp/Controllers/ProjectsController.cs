@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using HelpDesk.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
 namespace HelpDesk.Controllers
 {
@@ -35,8 +39,19 @@ namespace HelpDesk.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Project project)
         {
+
             if (ModelState.IsValid)
             {
+                var headers = this.Request.Headers;
+                if (headers.ContainsKey("Authorization"))
+                {
+                    StringValues token;
+                    headers.TryGetValue("Authorization", out token);
+                    var tokenText = token.ToString();
+                    var handler = new JwtSecurityTokenHandler();
+                    var tokenS = handler.ReadToken(tokenText) as JwtSecurityToken;
+                    var jti = tokenS.Claims.First(claim => claim.Type == ClaimTypes.Name).Value;
+                }
                 db.Projects.Add(project);
                 db.SaveChanges();
                 return Ok(project);
@@ -69,4 +84,3 @@ namespace HelpDesk.Controllers
         }
     }
 }
- 

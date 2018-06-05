@@ -36,6 +36,11 @@ namespace WebApp.Controllers
         
             if (user == null)
                 return Unauthorized();
+            return CreateToken(user);
+        }
+
+        private IActionResult CreateToken(User user)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -55,6 +60,28 @@ namespace WebApp.Controllers
                 Username = user.Name,
                 Token = tokenString
             });
+        }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] UserDto userDto)
+        {
+            User user = db.Users.Where(a => a.Name == userDto.Name).FirstOrDefault();
+            if (user != null)
+            {
+                return StatusCode(401);
+            }
+            Organization organization = db.Organizations.Where(a => a.Title == userDto.Organization).FirstOrDefault();
+            if (organization == null)
+            {
+                organization = new Organization() { Title = userDto.Organization };
+                db.Organizations.Add(organization);
+                db.SaveChanges();
+            }
+            user = new User() { Name = userDto.Name, CurrentOrganization = organization, Password = userDto.Password };
+            db.Users.Add(user);
+            db.SaveChanges();
+            return CreateToken(user);
         }
     }
 }
