@@ -1,0 +1,79 @@
+<header class="header">
+    <div class="mydropdown">
+        <button class="mydropbtn">{{currentUser.organization}} <i class="fas fa-caret-down"></i></button>
+        <div class="mydropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Add...</a>
+        </div>
+    </div>
+    <div class="mydropdown">
+        <button class="mydropbtn">{{selectedProject ? selectedProject.title : 'Projects'}} <i class="fas fa-caret-down"></i></button>
+        <div class="mydropdown-content" *ngIf='isLoaded'>
+             <a class="pointer" (click)="selectAll()" >All projects</a>
+            <a class="pointer" *ngFor="let p of projects" (click)="selectProject(p)">{{p.title}}</a>
+            <a (click)="openDialog()">Add...</a>
+        </div>
+    </div>
+    <div class="mydropdown user">
+        <button class="mydropbtn">{{currentUser.username}} <i class="fas fa-caret-down"></i></button>
+        <div class="mydropdown-content">
+            <a class="pointer" (click)="logOut()">Log Out</a>
+        </div>
+    </div>
+</header>
+<div class="row">
+    <div class="col s3">
+        <div class="card grey lighten-4">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Todo<i class="material-icons right">more_vert</i></span>
+                <ul class="collection">
+                    <li *ngFor="let t of selectedProject?projectTasksToDo:tasksToDo" class="collection-item pointer"><a [ngClass]="{'disabled': !selectedProject}" (click)="open(t)">{{t.title}}</a><a (click)="deleteTask(t.id)" class="secondary-content pointer"><i class="material-icons">delete</i></a></li>
+                </ul>
+                <a class="btn-floating" (click)="open()" *ngIf="selectedProject"><i class="material-icons">add</i></a>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col s3">
+        <div class="card grey lighten-4">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">In Progress<i class="material-icons right">more_vert</i></span>
+                <ul class="collection">
+                    <li *ngFor="let at of selectedProject ? projectTasksProgress : activeTasks" class="collection-item pointer"><a [ngClass]="{'disabled': !selectedProject}" (click)="open(at)">{{at.title}}</a><a (click)="deleteTask(at.id)" class="secondary-content pointer"><i class="material-icons">delete</i></a></li>                    
+                </ul>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col s3">
+        <div class="card grey lighten-4">
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Completed<i class="material-icons right">more_vert</i></span>
+                <ul class="collection">
+                    <li *ngFor="let ct of selectedProject?projectTasksCompleted:completedTasks" class="collection-item"><a [ngClass]="{'disabled': !selectedProject}" (click)="open(ct)">{{ct.title}}</a><a (click)="deleteTask(ct.id)" class="secondary-content pointer"><i class="material-icons">delete</i></a></li>
+                </ul>
+
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

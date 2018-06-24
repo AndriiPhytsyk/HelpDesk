@@ -1,0 +1,99 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title">{{editMode ? 'Edit Task': 'Add Task'}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)='editMode?updateTask():createNewTask()'>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Title</label>
+            <input type="text"
+                   class="form-control"
+                   id="formGroupExampleInput"
+                   placeholder="Title"
+                   formControlName="title"
+                   [ngModel]="selectedTask?.title">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput1">Description</label>
+            <input type="text"
+                   class="form-control"
+                   id="formGroupExampleInput1"
+                   placeholder="Description"
+                   formControlName="description"
+                   [ngModel]="selectedTask?.description">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">State</label>
+            <select class="form-control"
+                    id="exampleFormControlSelect1"
+                    formControlName="state"
+                    [ngModel]="selectedTask ? selectedTask?.State : 'ToDo'"
+                    readonly>
+                <option selected>ToDo</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput3">Progress</label>
+            <input type="text"
+                   class="form-control"
+                   id="formGroupExampleInput3"
+                   placeholder="Progress"                  
+                   value="0"
+                   formControlName="progress"
+                   [ngModel]="selectedTask ? selectedTask?.State : '0'">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput4">Effort</label>
+            <input type="number"
+                   min="1"
+                   max="100"
+                   class="form-control"
+                   id="formGroupExampleInput4"
+                   placeholder="Effort"
+                   formControlName="effort"
+                   [ngModel]="selectedTask?.effort">
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <label for="example-date-input5">Start Date</label>
+                    <input class="form-control"
+                           type="date"
+                           id="example-date-input5"
+                           formControlName="startDate"
+                           [ngModel]="selectedTask?.startDate">
+                </div>
+                <div class="col-6">
+                    <label for="example-date-input2">End Date</label>
+                    <input class="form-control"
+                           type="date"
+                           id="example-date-input2"
+                           formControlName="endDate"
+                           [ngModel]="selectedTask?.endDate">
+                </div>
+            </div>
+            <div class="form-group row">   
+                <div class="col-6">
+                    <label for="exampleFormControlSelect2">Asign To</label>
+                    <select class="form-control"
+                            id="exampleFormControlSelect2"
+                            formControlName="user"
+                            >
+                        <option *ngFor="let m of projectMembers" [value]="m.id">{{m.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" [disabled]="form.invalid && !editMode">{{editMode ? 'Edit Task': 'Add Task'}}</button>
+                <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+            </div>
+        </div>
+    </form>
+</div>

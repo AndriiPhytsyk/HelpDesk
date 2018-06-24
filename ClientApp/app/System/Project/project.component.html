@@ -1,0 +1,18 @@
+﻿
+<h1 mat-dialog-title>Add Project</h1>
+<form [formGroup]="newProjectForm" (ngSubmit)='createNewProject()'>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Input project title" formControlName="title">
+        </mat-form-field>
+    </div>
+    <mat-form-field>
+        <mat-select placeholder="select project members" multiple formControlName="members">
+            <mat-option *ngFor="let d of data" [value]="d.id">{{d.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+        <button type="submit" mat-button cdkFocusInitial [disabled]="newProjectForm.invalid">Add Project</button>
+    </div>
+</form>

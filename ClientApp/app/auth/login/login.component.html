@@ -1,0 +1,79 @@
+﻿    <div class="valign-wrapper" style="width:100%;height:100%;position: absolute;">
+    <div class="valign" style="width:100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6 offset-m4">
+                    <div class="card col s8">
+                        <div class="card-content card-action">
+                            <span class="card-title black-text text-center">Help-Desk</span>
+                            <form [formGroup]="form" (ngSubmit)='onSubmit()'>
+                                <div class="row">
+                                    <div class="form-group col s12"
+                                         [ngClass]="{'invalid': form.get('name').invalid && form.get('name').touched}">
+                                        <label for="name" class="active">Name</label>
+                                        <input placeholder="Enter Your Name"
+                                               id="name"
+                                               class="form-control underlined"
+                                               type="text"
+                                               formControlName="name">
+
+                                        <span class="helper-text"
+                                              *ngIf="form.get('name').invalid && form.get('name').touched">
+                                            <span *ngIf="form.get('name')['errors']['required']">Username is required. </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col s12">
+                                        <label for="organization" class="active">Company</label>
+                                        <input placeholder="Enter Your Name"
+                                               id="organization"
+                                               class="form-control underlined"
+                                               type="text"
+                                               formControlName="organization">
+
+                                        <span class="helper-text"
+                                              *ngIf="form.get('organization').invalid && form.get('name').touched">
+                                            <span *ngIf="form.get('organization')['errors']['required']">Organization name is required. </span>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col s12"
+                                         [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
+                                        <label for="password" class="active">Password</label>
+                                        <input placeholder="Enter Your password"
+                                               id="password"
+                                               type="password"
+                                               formControlName="password">
+
+                                        <span class="helper-text"
+                                              *ngIf="form.get('password').invalid && form.get('password').touched">
+                                            <span *ngIf="form.get('password')['errors']['required']">Password shouldn't be empty. </span>
+                                            <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
+                                                The password must consist of more than
+                                                {{ form.get('password')['errors']['minlength']['requiredLength'] }}
+                                                characters. Now {{ form.get('password')['errors']['minlength']['actualLength'] }}.
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="card-action">
+                                        <input type="submit" class="btn col s12" [disabled]="form.invalid" value="Sign In">
+                                        <p>
+                                            <a [routerLink]="['/registration']">Register now!</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
