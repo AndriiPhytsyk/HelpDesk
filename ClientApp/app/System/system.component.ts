@@ -31,7 +31,7 @@ export class SystemComponent implements OnInit {
     closeResult: string;
     newProjectForm: FormGroup;
     projects: Project[] = [];
-   
+
     isLoaded = false;
     selectedProject: Project;
 
@@ -39,7 +39,7 @@ export class SystemComponent implements OnInit {
     projectTasksToDo: Task[] = [];
     projectTasksProgress: Task[] = [];
     projectTasksCompleted: Task[] = [];
-  
+
     editMode: boolean;
 
     tasksToDo: Task[] = [];
@@ -61,12 +61,12 @@ export class SystemComponent implements OnInit {
         public usersService: UsersService
     ) { }
 
-    
+
 
     openDialog(): void {
         let dialogRef = this.dialog.open(ProjectComponent, {
             width: '250px',
-            data: this.organizationUsers 
+            data: this.organizationUsers
         });
         dialogRef.afterClosed().subscribe(project => {
             this.projects.push(project);
@@ -83,7 +83,7 @@ export class SystemComponent implements OnInit {
 
     open(task: Task) {
 
-        if (task ) {
+        if (task) {
             this.editMode = true;
         } else {
             this.editMode = false;
@@ -93,27 +93,27 @@ export class SystemComponent implements OnInit {
         modal.componentInstance.projectMembers = this.projectMembers;
         modal.componentInstance.editMode = this.editMode;
         modal.componentInstance.selectedTask = task;
-        modal.componentInstance.onTaskAdd.subscribe((task: Task) => {
-            console.log(task);
-            console.log(this.currentUser.id);
+
+        
+
+        modal.result.then((task: Task) => {
             if (+task.user == this.currentUser.id) {
-            switch (task.state) {
-                case 'ToDo':
-                    this.projectTasksToDo.push(task);
-                    break;
-                case 'In Progress':
-                    this.projectTasksProgress.push(task);
-                    break;
-                case 'Completed':
-                    this.projectTasksCompleted.push(task);
-                    break;                
+                switch (task.state) {
+                    case 'ToDo':
+                        this.projectTasksToDo.push(task);
+                        break;
+                    case 'In Progress':
+                        this.projectTasksProgress.push(task);
+                        break;
+                    case 'Completed':
+                        this.projectTasksCompleted.push(task);
+                        break;
+                }
             }
-                this.loadTasks();
-            }
-        });
-        modal.componentInstance.onTaskEdit.subscribe((task: Task) => {
             this.loadTasks();
-        })
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     private getDismissReason(reason: any): string {
@@ -172,17 +172,17 @@ export class SystemComponent implements OnInit {
         this.selectedProject = project;
 
         this.projectTasksToDo = this.tasksToDo.filter((t: Task) => {
-            return (t.currentProjectId == project.id) && (t.state=='ToDo');
+            return (t.currentProjectId == project.id) && (t.state == 'ToDo');
         });
         this.projectTasksProgress = this.activeTasks.filter((t: Task) => {
-            return (t.currentProjectId == project.id) && (t.state=='In Progress');
+            return (t.currentProjectId == project.id) && (t.state == 'In Progress');
         });
         this.projectTasksCompleted = this.completedTasks.filter((t: Task) => {
-            return (t.currentProjectId == project.id) && (t.state=='Completed');
-        });  
- 
+            return (t.currentProjectId == project.id) && (t.state == 'Completed');
+        });
+
         this.usersService.getProjectMembers(project.id)
-            .subscribe((projectMembers: UserDto) => this.projectMembers = projectMembers);       
+            .subscribe((projectMembers: UserDto) => this.projectMembers = projectMembers);
     }
 
     selectAll() {
@@ -192,7 +192,7 @@ export class SystemComponent implements OnInit {
 
     }
     deleteTask(id: number) {
-        console.log(id);
+
         this.taskService.deleteTask(id)
             .subscribe(() => this.loadTasks());
     }

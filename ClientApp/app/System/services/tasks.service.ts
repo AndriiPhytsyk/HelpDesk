@@ -18,7 +18,8 @@ export class TaskService {
 
     updateTask(task: Task): Observable<Task> {
 
-        return this.http.put(this.config.apiUrl + '/api/tasks/', task, this.jwt());
+        return this.http.put(this.config.apiUrl + '/api/tasks/', task, this.jwt())
+            .map((task: Task) => task)
     }
 
     getTasksList(): Observable<any> {

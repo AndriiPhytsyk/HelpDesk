@@ -89,17 +89,13 @@ public class ProjectController : Controller
             User user = db.Users.Where(u => u.ID == Convert.ToInt32(userId)).FirstOrDefault();
             Project project = db.Projects.Where(project1 => projectId == project1.ID).Single();
             var taskModel = new HelpDesk.Models.Task() { Title = task.Title, User = user, State = task.State, Description = task.Description, Effort = task.Effort, Progress = task.Progress, StartDate = task.StartDate, EndDate = task.EndDate, CurrentProjectId = project.ID, CurrentProject = project };
-            
-
             //task.CurrentProject = project;
-
-
 
             db.Tasks.Add(taskModel);
                 db.SaveChanges();
 
-               
-            
+
+            task.ID = taskModel.ID; 
 
             return Ok(task);
         }
@@ -119,17 +115,24 @@ public class ProjectController : Controller
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody]TaskDto taskDto)
+    public IActionResult Put([FromBody]TaskDto task)
     {
-        HelpDesk.Models.Task task = db.Tasks.Where(t => t.ID == taskDto.ID).FirstOrDefault();
-        task.Title = taskDto.Title;
-        task.Description = taskDto.Description;
-        task.State = taskDto.State;
-        task.Progress = taskDto.Progress;
-        task.StartDate = taskDto.StartDate;
-        task.EndDate = taskDto.EndDate;
+        int projectId = task.CurrentProjectId;
+        var userId = task.User;
+        Project project = db.Projects.Where(project1 => projectId == project1.ID).Single();
 
-            db.Update(task);
+        User user = db.Users.Where(u => u.ID == Convert.ToInt32(userId)).FirstOrDefault();
+        var taskModel = db.Tasks.Where(t => t.ID == task.ID).FirstOrDefault();
+            taskModel.Title = task.Title;        
+            taskModel.Description = task.Description;        
+            taskModel.State = task.State;        
+            taskModel.Progress = task.Progress;        
+            taskModel.StartDate = task.StartDate;        
+            taskModel.EndDate = task.EndDate;        
+            taskModel.User = user;        
+
+
+            db.Update(taskModel);
             db.SaveChanges();
             return Ok(task);
     }

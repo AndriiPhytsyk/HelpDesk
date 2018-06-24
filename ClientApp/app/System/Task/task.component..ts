@@ -24,8 +24,8 @@ export class TaskComponent implements OnInit {
 
     form: FormGroup;
     @Input() selectedProject: Project;
-    @Output() onTaskAdd = new EventEmitter<Task>();
-    @Output() onTaskEdit = new EventEmitter<Task>();
+    //@Output() onTaskAdd = new EventEmitter<Task>();
+    //@Output() onTaskEdit = new EventEmitter<Task>();
     @Input() editMode: boolean;
     @Input() selectedTask: Task;
     @Input() projectTasks: Task[];
@@ -58,12 +58,12 @@ export class TaskComponent implements OnInit {
         const currentProjectId = this.selectedProject['id'];
 
         const task = new Task(title, 0, state, description, effort, progress, startDate, endDate, currentProject, currentProjectId, user);
-        console.log(task);
+       
        
         this.tasksService.createNewTask(task)
             .subscribe((task: Task) => {
-                this.onTaskAdd.emit(task)
-                this.activeModal.close(null);
+                //this.onTaskAdd.emit(task)
+                this.activeModal.close(task);
 
             });
     }
@@ -71,7 +71,7 @@ export class TaskComponent implements OnInit {
     updateTask() {
 
         
-        let { title, description, state, effort, progress, startDate, endDate } = this.form.value;
+        let { title, description, state, effort, progress, startDate, endDate, user } = this.form.value;
 
         if (effort > 100) effort = 100;
 
@@ -79,7 +79,7 @@ export class TaskComponent implements OnInit {
         const currentProject = this.selectedProject['title'];
         const currentProjectId = this.selectedProject['id'];    
         
-        const task = new Task(title, this.selectedTask.id, state, description, effort, progress, startDate, endDate, currentProject, currentProjectId);
+        const task = new Task(title, this.selectedTask.id, state, description, effort, progress, startDate, endDate, currentProject, currentProjectId, user);
         this.selectedTask.title = title;
         this.selectedTask.state = state;
         this.selectedTask.description = description;
@@ -87,11 +87,14 @@ export class TaskComponent implements OnInit {
         this.selectedTask.progress = progress;
         this.selectedTask.startDate = startDate;
         this.selectedTask.endDate = endDate;
+        this.selectedTask.user = user;
 
         this.tasksService.updateTask(this.selectedTask)
             .subscribe((task: Task) => {
-                this.onTaskAdd.emit(task);
-                this.activeModal.close(null);
+                console.log('---');
+                console.log(task);
+                //this.onTaskEdit.emit(task);
+                this.activeModal.close(task);
 
             });
     }
