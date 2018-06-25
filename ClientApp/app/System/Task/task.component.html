@@ -82,7 +82,7 @@
                     <select class="form-control"
                             id="exampleFormControlSelect2"
                             formControlName="user"
-                            >
+                            [ngModel]="editMode? selectedTask.name: ''">
                         <option *ngFor="let m of projectMembers" [value]="m.id">{{m.name}}</option>
                     </select>
                 </div>

@@ -94,7 +94,7 @@ export class TaskComponent implements OnInit {
                 console.log('---');
                 console.log(task);
                 //this.onTaskEdit.emit(task);
-                this.activeModal.close(task);
+                this.activeModal.close(null);
 
             });
     }

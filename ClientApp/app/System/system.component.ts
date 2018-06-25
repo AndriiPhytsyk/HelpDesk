@@ -97,6 +97,9 @@ export class SystemComponent implements OnInit {
         
 
         modal.result.then((task: Task) => {
+            if (task == null) {
+                this.loadTasks();
+            };
             if (+task.user == this.currentUser.id) {
                 switch (task.state) {
                     case 'ToDo':
